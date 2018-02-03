@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
   componentWillMount() {
     const config = {
-      apiKey: 'API KEY',
+      apiKey: 'AIzaSyB_Q_rPW9PVBnd_Xe20ImvkL80bhX2R86k',
       authDomain: 'manager-3ca7c.firebaseapp.com',
       databaseURL: 'https://manager-3ca7c.firebaseio.com',
       projectId: 'manager-3ca7c',
@@ -20,8 +21,9 @@ class App extends Component {
   }
 
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <View>
 
           <LoginForm />
