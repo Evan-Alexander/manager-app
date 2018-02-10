@@ -26,6 +26,6 @@ const RouterComponent = () => {
       </Scene>
     </Router>
   );
-}
+};
 
 export default RouterComponent;
